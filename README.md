@@ -4,4 +4,6 @@ There are two tasks that were accompolished:
 2. Did field trips in Varanasi district to gather data regarding various socio-economic aspects and analysed them in R.
 
 ## Some Snaps of the Analysis:
-
+<img src="snaps/1.jpg">
+<img src="snaps/2.jpg">
+<img src="snaps/3.jpg">
