@@ -1,0 +1,386 @@
+---
+title: "Report"
+author: "Varad Srivastava"
+date: "March 21, 2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+#Analysis of Industries :
+
+##1. No. of Industries :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/industryReports.jsp)
+         Talika 35 and 36
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/no_of_industries.csv", header = TRUE)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+boxplot(data)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[1,])
+barplot(height = bvector, names.arg = c("2013-2014","2014-2015","2015-2016","2016-2017","2017-2018"))
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : No. of industuries have been increasing since the last few years, recording a suprising jump, in 2016-17, possibily due to ease of doing business. Also to be noted is that, after 2016-17, no. of industries have seen a sudden decline, possibly due to cash crunch due to demonetisation.
+
+
+
+##2a. Types of Industries according to labour :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/industryReports.jsp)
+         Talika 37
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/industries_labour.csv", header = TRUE)
+data <- cbind(Years = c("2017-18","2016-17","2015-16"), data)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+op <- par(mar=c(11,4,4,2))
+d = data[,2]
+#boxplot(data = d, names = c("2017-18","2016-17","2015-16"),horiz=F, las=2, main="In Factories")
+
+rm(op)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[,2])
+cvector <- as.numeric(data[,3])
+dvector <- as.numeric(data[,4])
+op <- par(mar=c(11,4,4,2))
+barplot(height = bvector, names.arg = c("2017-18","2016-17","2015-16"),horiz=F, las=2, ylab="No. of Labours", main="In Factories" )
+barplot(height = cvector, names.arg = c("2017-18","2016-17","2015-16"),horiz=F, las=2, ylab="No. of Labours", main="In Small Industrial Units" )
+barplot(height = dvector, names.arg = c("2017-18","2016-17","2015-16"),horiz=F, las=2, ylab="No. of Labours", main="In Khadi Gramudyog units" )
+rm(op)
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : Most growth has been witnessed in Khadi Gramudyog units and in small industrial units, possibily indicating a shift to smaller units, maybe because of government's initiatives to build up entrpreneruship avenues.
+
+
+
+##2c. Types of Industries according to Ownership :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/industryReports.jsp)
+         Talika 36
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/industries_ownership.csv", header = TRUE)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+op <- par(mar=c(11,4,4,2))
+boxplot(data, names = c("Panchayat","Chetra_Samiti","Audyogik_Sahkari_Samiti","Panjikrat_Sansthayen","Vyaktigat_Udyog"),horiz=F, las=2)
+rm(op)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[1,])
+op <- par(mar=c(11,4,4,2))
+barplot(height = bvector, names.arg = c("Panchayat","Chetra_Samiti","Audyogik_Sahkari_Samiti","Panjikrat_Sansthayen","Vyaktigat_Udyog"),horiz=F, las=2)
+rm(op)
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : No. of industuries, belonging to Panchayat, Chetra Samiti, Adyogik Sahkari Samiti and Panjikrat Sansthayen are virtually 0. Although, the industries owned by individuals, i.e. Vyaktigat Udyog, are on the rise, can ring some bells of happiness ,signaling an increase in entrepreneurship, still, these are worrysome figures, and more focus is needed on industries owned by cooperatives and Panchayats, so that village people can be empowered as well.
+
+
+#Analysis of Electricity
+
+## No. Electricity connections in rural areas :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/gettable48Report.action)
+         Talika 48
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/electric_connections.csv", header = TRUE)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+boxplot(data)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[1,])
+barplot(height = bvector, names.arg = c("2015-2016","2016-2017","2017-2018"))
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : No. of electric connections have been steadly increasing since the last few years, possibily due to government's new schemes like Pradhan Mantri Sahaj Bijli Har Ghar Yojana.
+
+
+
+
+#Analysis of Education
+
+## No. schools, colleges and universities :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/gettable39Report.action)
+         Talika 39
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/education_nos.csv", header = TRUE)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+boxplot(data)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[1,])
+barplot(height = bvector, names.arg = c("Schools","Colleges","Universities"))
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : No. of educational institutions are significant in the district, with the presence of even notable institutions like BHU and IIT. However,much can be done on the front of colleges and schools. With the district population growing as a fast pace, with the influx of rural population from nearby villages, necessity for more schools and colleges is going to increase.
+
+
+
+## No. of teachers :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/gettable41Report.action)
+         Talika 41
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/teachers.csv", header = TRUE)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+boxplot(data)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[1,])
+barplot(height = bvector, names.arg = c(" Primary Schools","Colleges","Universities"))
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : No. of teachers although show a positive feature, but the quality of education remains low, indicating, lack of quality, not quantity. The screening process of teachers need to match the necessities of the modern world.
+
+
+
+
+#Analysis of Irrigation
+
+## Irrigation Area :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/gettable18Report.action)
+         Talika 18
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/irrigation_area.csv", header = TRUE)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+boxplot(data)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[1,])
+barplot(height = bvector, names.arg = c("2015-16","2016-17","2017-18"))
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : Amount of irrigation area shows up more or less, over the last three years, indicating a fault in government records.
+
+
+## Number of canals and ponds :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/gettable18Report.action)
+         Talika 18
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/ponds_canals.csv", header = TRUE)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+boxplot(data)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[1,])
+barplot(height = bvector, names.arg = c("Canals","Ponds"))
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : Number of canals and ponds in the district are in decent amount in 2018. Although, due to rapid urbanisation, many ponds are getting depleted quickly.
+
+
+
+## Number of tubewells electric and diesel :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/gettable23Report.action)
+         Talika 23
+
+####Let's take as input the raw data.
+```{r}
+data1 <- read.csv("data_files/tubewellse.csv", header = TRUE)
+data2 <- read.csv("data_files/tubewellsdiesel.csv", header = TRUE)
+
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+boxplot(data1, main = "Electric tubewells")
+boxplot(data2, main = "Diesel tubewells")
+
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data1[1,])
+barplot(height = bvector, names.arg = c("2015-16","2016-17","2017-18"), main = "Electric tubewells")
+cvector <- as.numeric(data2[1,])
+barplot(height = bvector, names.arg = c("2015-16","2016-17","2017-18"), main = "Diesel tubewells")
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : Number of electric tubewells have shown a steady increase while stangnant nature of diesel ones. This is a good sign, as our dependence on crude oil decreases and it is good for the environment too.
+
+
+## Number of borewells :
+
+Source : Zila Spider Report (http://updes.up.nic.in/spiderreports/gettable23Report.action)
+         Talika 23
+
+####Let's take as input the raw data.
+```{r}
+data <- read.csv("data_files/borewells.csv", header = TRUE)
+```
+
+
+####Visualizing the data:
+Using box plot :
+```{r, echo=FALSE}
+boxplot(data)
+```
+
+Using Histogram/Bar Chart:
+```{r, echo=FALSE}
+bvector <- as.numeric(data[1,])
+barplot(height = bvector, names.arg = c("2015-16","2016-17","2017-18"))
+```
+
+####Analysis of Data:
+Summary of data:
+
+```{r, echo=FALSE}
+summary(data)
+```
+
+###**Conclusion** : Number of borewells haven't increased over the years, which does sound good for ground water.
+
+
+
+
+
+
+
